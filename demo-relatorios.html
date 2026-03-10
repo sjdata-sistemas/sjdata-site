@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Relatórios SJDATA</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+                        primary: '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .sidebar { transition: transform 0.3s ease; }
+        .sidebar-item { transition: all 0.2s ease; }
+        .sidebar-item:hover, .sidebar-item.active { background-color: #334155; color: white; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 flex min-h-screen font-sans antialiased overflow-hidden">
+    <div id="sidebarOverlay" class="fixed inset-0 bg-slate-900/50 z-20 hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+    <aside id="sidebar" class="sidebar fixed lg:static inset-y-0 left-0 z-30 w-64 bg-slate-900 text-slate-300 flex flex-col shadow-xl transform -translate-x-full lg:translate-x-0">
+        <div class="h-20 flex items-center px-6 border-b border-slate-800 shrink-0">
+            <span class="text-white font-bold text-xl tracking-tight flex items-center gap-2">
+                <img src="img/logo.png" alt="SJDATA ERP Logo" class="h-14 w-auto object-contain" style="transform: scale(2.5); transform-origin: left center;">
+            </span>
+            <button onclick="toggleSidebar()" class="lg:hidden ml-auto text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3 mt-4">Principal</div>
+            <a href="demo.html" class="sidebar-item flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+            </a>
+            <a href="demo-pdv.html" class="sidebar-item flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i> PDV / Caixas
+            </a>
+            
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3 mt-6">Cadastros</div>
+            <a href="demo-clientes.html" class="sidebar-item flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium">
+                <i data-lucide="users" class="w-4 h-4"></i> Clientes
+            </a>
+            <a href="demo-produtos.html" class="sidebar-item flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium">
+                <i data-lucide="package" class="w-4 h-4"></i> Produtos
+            </a>
+            
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3 mt-6">Gestão</div>
+            <a href="demo-financeiro.html" class="sidebar-item flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium">
+                <i data-lucide="dollar-sign" class="w-4 h-4"></i> Financeiro
+            </a>
+            <a href="demo-relatorios.html" class="sidebar-item active flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium">
+                <i data-lucide="bar-chart-2" class="w-4 h-4"></i> Relatórios
+            </a>
+        </div>
+
+        <div class="p-4 border-t border-slate-800">
+            <a href="index.html" class="flex flex-col gap-1 items-center justify-center p-3 rounded-lg border border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-sm transition-colors text-center text-slate-300 hover:text-white">
+                <i data-lucide="arrow-left" class="w-4 h-4 mb-1"></i>
+                <span class="font-medium">Voltar ao Site Oficial</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 bg-slate-100 overflow-hidden">
+        <header class="h-16 bg-white border-b border-slate-200 shadow-sm flex items-center justify-between px-4 lg:px-8 z-10 shrink-0">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="flex items-center gap-3 lg:gap-5">
+                <div class="flex items-center gap-3 cursor-pointer">
+                    <div class="w-9 h-9 rounded-full bg-primary/10 flex flex-shrink-0 items-center justify-center text-primary font-bold border border-primary/20">V</div>
+                    <div class="hidden md:block text-sm">
+                        <p class="font-medium text-slate-700 leading-none mb-1">Visitante</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50/50 p-4 lg:p-8">
+            <div class="max-w-7xl mx-auto space-y-6 fade-in">
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
+                    <div>
+                        <h1 class="text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight">Relatórios Gerenciais</h1>
+                        <p class="text-slate-500 mt-1">Inteligência de negócios (BI), Curva ABC e exportações contábeis.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2" onclick="alert('Funcionalidade de exportação Excel bloqueada no modo de demonstração.')">
+                            <i data-lucide="download" class="w-4 h-4"></i> Exportar (Planilha)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Chart 1 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+                        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i data-lucide="bar-chart" class="w-5 h-5 text-primary"></i> Vendas por Categoria (Top 5)
+                        </h3>
+                        <div class="h-64 relative">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+                        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i data-lucide="pie-chart" class="w-5 h-5 text-purple-500"></i> Formas de Pagamento
+                        </h3>
+                        <div class="h-64 relative flex items-center justify-center">
+                            <canvas id="paymentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de Relatórios Rápidos -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="p-5 border-b border-slate-100 font-semibold text-slate-800 flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-5 h-5 text-slate-400"></i> Relatórios Analíticos Prontos
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
+                        
+                        <div class="p-5 hover:bg-slate-50 transition-colors group cursor-pointer" onclick="alert('Relatório demonstrativo. Visualização inativa.')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="bg-blue-100 text-blue-600 p-2 rounded-md"><i data-lucide="package" class="w-5 h-5"></i></div>
+                                <h4 class="font-bold text-slate-800 group-hover:text-primary transition-colors">Curva ABC de Produtos</h4>
+                            </div>
+                            <p class="text-sm text-slate-500">Identifique os itens mais rentáveis e com maior giro (Classe A).</p>
+                        </div>
+
+                        <div class="p-5 hover:bg-slate-50 transition-colors group cursor-pointer" onclick="alert('Relatório demonstrativo. Visualização inativa.')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="bg-emerald-100 text-emerald-600 p-2 rounded-md"><i data-lucide="users" class="w-5 h-5"></i></div>
+                                <h4 class="font-bold text-slate-800 group-hover:text-primary transition-colors">Curva ABC de Clientes</h4>
+                            </div>
+                            <p class="text-sm text-slate-500">Seus principais clientes que geram 80% do faturamento da empresa.</p>
+                        </div>
+
+                        <div class="p-5 hover:bg-slate-50 transition-colors group cursor-pointer" onclick="alert('Relatório demonstrativo. Visualização inativa.')">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="bg-amber-100 text-amber-600 p-2 rounded-md"><i data-lucide="file-spreadsheet" class="w-5 h-5"></i></div>
+                                <h4 class="font-bold text-slate-800 group-hover:text-primary transition-colors">Exportação Contábil SPED</h4>
+                            </div>
+                            <p class="text-sm text-slate-500">Arquivos XML de NF-e, NFC-e e registros para o contador.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const sidebar = document.getElementById('sidebar');
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            document.getElementById('sidebarOverlay').classList.toggle('hidden');
+        }
+
+        // Charts Initialization
+        const primaryColor = '#3B82F6';
+        
+        // Categoria (Bar)
+        const ctxCat = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCat, {
+            type: 'bar',
+            data: {
+                labels: ['Informática', 'Acessórios', 'Serviços', 'Papelaria', 'Manutenção'],
+                datasets: [{
+                    label: 'Vendas (Milhares R$)',
+                    data: [45, 25, 18, 12, 10],
+                    backgroundColor: primaryColor,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { borderDash: [2, 4], color: '#f1f5f9' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Formas de Pagamento (Doughnut)
+        const ctxPay = document.getElementById('paymentChart').getContext('2d');
+        new Chart(ctxPay, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pix / TEF', 'Cartão Crédito', 'Boleto', 'Dinheiro'],
+                datasets: [{
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [
+                        '#10B981', // Emerald
+                        primaryColor, // BLue
+                        '#8B5CF6', // Purple
+                        '#94A3B8'  // Slate
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'right' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SJData — Software de Gestão Comercial, Varejo e Serviços</title>
+  <meta name="description" content="A SJData oferece sistemas completos de ERP, PDV e gestão para comércio, varejo e prestadores de serviços. Soluções inteligentes para impulsionar o seu negócio.">
+  <meta name="keywords" content="ERP, PDV, sistema de gestão, software comercial, varejo, serviços, NF-e, NFC-e, estoque, financeiro">
+  <meta property="og:title" content="SJData — Software de Gestão Completo">
+  <meta property="og:description" content="Sistemas de ERP, PDV e gestão para comércio, varejo e serviços. Tecnologia que impulsiona seu negócio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sjdata.com.br">
+  <meta name="theme-color" content="#0A1628">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo" style="display:flex; align-items:center;">
+        <img src="img/logo.png" alt="SJData Logo" style="height: 72px; width: auto; object-fit: contain; transform: scale(1.8); transform-origin: left center;">
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#solucoes">Soluções</a></li>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="nav-cta" id="navCta">
+        <a href="demo.html" class="btn btn-outline" target="_blank">Acessar Demo</a>
+        <a href="https://wa.me/5511976695896?text=Olá!%20Gostaria%20de%20conhecer%20o%20sistema%20SJData." 
+           class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink:0;">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          ✦ Software made in Brasil
+        </div>
+        <h1 class="hero-title">
+          Gestão Inteligente para o<br>
+          <span class="text-gradient">Seu Negócio Crescer</span>
+        </h1>
+        <p class="hero-desc">
+          Sistema completo de ERP, PDV e gestão para comércio, 
+          varejo e prestadores de serviços. Da emissão de nota fiscal 
+          ao controle de estoque, tudo em um só lugar.
+        </p>
+        <div class="hero-actions">
+          <a href="demo.html" class="btn btn-primary btn-lg" id="heroDemoBtn" target="_blank">
+            🚀 Testar Sistema (Demo)
+          </a>
+          <a href="https://wa.me/5511976695896?text=Olá!%20Gostaria%20de%20uma%20demonstração%20do%20sistema%20SJData." 
+             class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+            💬 Falar no WhatsApp
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" data-count="500" data-suffix="+">0+</span>
+            <span class="stat-label">Clientes Ativos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="10" data-suffix="+ anos">0</span>
+            <span class="stat-label">de Experiência</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="99" data-suffix="%">0%</span>
+            <span class="stat-label">Satisfação</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img src="img/dashboard.png" alt="Dashboard do sistema SJData" loading="lazy">
+        </div>
+
+        <div class="hero-badge badge-1">
+          <div class="badge-icon green">✅</div>
+          <div class="badge-text">
+            <strong>NF-e Emitida</strong>
+            <span>NF 004521 aprovada</span>
+          </div>
+        </div>
+
+        <div class="hero-badge badge-2">
+          <div class="badge-icon blue">📈</div>
+          <div class="badge-text">
+            <strong>+27% vendas</strong>
+            <span>Esse mês vs. anterior</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST BAR ═══ -->
+  <div class="trust-bar">
+    <div class="container">
+      <span class="trust-label">Confiado por empresas em todo o Brasil</span>
+      <div class="trust-logos">
+        <span class="trust-logo">🛒 Mercados</span>
+        <span class="trust-logo">🍽️ Restaurantes</span>
+        <span class="trust-logo">👚 Lojas de Roupas</span>
+        <span class="trust-logo">🔧 Prestadores de Serviços</span>
+        <span class="trust-logo">🏗️ Material de Construção</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SOBRE ═══ -->
+  <section class="about section" id="sobre">
+    <div class="container">
+      <div>
+        <div class="reveal">
+          <span class="section-tag">🏢 Sobre a SJData</span>
+          <h2 class="section-title">
+            Tecnologia que <span class="text-gradient">transforma</span><br>pequenos negócios
+          </h2>
+          <p class="section-subtitle">
+            Há mais de 10 anos desenvolvemos soluções de software para 
+            o varejo e o setor de serviços brasileiro. Entendemos a realidade 
+            do pequeno e médio empresário — e criamos ferramentas que realmente funcionam no dia a dia.
+          </p>
+        </div>
+
+        <div class="about-features">
+          <div class="about-feature reveal reveal-delay-1">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-text">
+              <strong>Foco no Usuário</strong>
+              <p>Interface simples e intuitiva, sem necessidade de treinamento longo. Sua equipe começa a usar no primeiro dia.</p>
+            </div>
+          </div>
+          <div class="about-feature reveal reveal-delay-2">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-text">
+              <strong>Segurança Total</strong>
+              <p>Dados criptografados, backup automático e conformidade com a LGPD. Sua empresa protegida 24h por dia.</p>
+            </div>
+          </div>
+          <div class="about-feature reveal reveal-delay-3">
+            <div class="feature-icon">🤝</div>
+            <div class="feature-text">
+              <strong>Suporte Humanizado e Ágil</strong>
+              <p>Equipe de suporte técnico dedicada pronta para te atender com rapidez. Você nunca está sozinho na operação.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image-grid reveal">
+        <div class="about-img-card">
+          <div class="big-number" data-count="500" data-suffix="+">500+</div>
+          <div class="card-label">Clientes Satisfeitos</div>
+        </div>
+        <div class="about-img-card">
+          <div class="big-number" data-count="10" data-suffix="+">10+</div>
+          <div class="card-label">Anos no Mercado</div>
+        </div>
+        <div class="about-img-card span-2">
+          <div style="font-size:2rem;">🏆</div>
+          <div>
+            <div class="big-number" style="font-size:1.5rem;">Top Suporte</div>
+            <div class="card-desc">Reconhecidos pelo atendimento personalizado e suporte técnico de excelência em todo o Brasil.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOLUÇÕES ═══ -->
+  <section class="solutions section" id="solucoes">
+    <div class="container">
+      <div class="solutions-header">
+        <div>
+          <span class="section-tag reveal">💡 Nossas Soluções</span>
+          <h2 class="section-title reveal">Tudo que você precisa<br><span class="text-gradient">em um só sistema</span></h2>
+        </div>
+        <p class="section-subtitle reveal">
+          Módulos integrados e completos para qualquer segmento do mercado.
+        </p>
+      </div>
+
+      <div class="solutions-grid">
+        <!-- ERP -->
+        <div class="solution-card featured reveal">
+          <div class="card-icon-wrap blue">🏭</div>
+          <span class="badge badge-blue" style="margin-bottom:12px">⭐ Mais Popular</span>
+          <h3>ERP Completo</h3>
+          <p>Sistema integrado de gestão empresarial para controlar todas as áreas do seu negócio em um único painel.</p>
+          <ul class="solution-features">
+            <li>Controle de Estoque em tempo real</li>
+            <li>Gestão Financeira completa</li>
+            <li>Cadastro de Clientes e Fornecedores</li>
+            <li>Pedidos de Compra e Venda</li>
+            <li>Relatórios gerenciais avançados</li>
+          </ul>
+        </div>
+
+        <!-- PDV -->
+        <div class="solution-card reveal reveal-delay-1">
+          <div class="card-icon-wrap cyan">🛒</div>
+          <h3>PDV — Frente de Caixa</h3>
+          <p>Ponto de Venda moderno e rápido, perfeito para lojas, mercados, açougues, padarias e mais.</p>
+          <ul class="solution-features">
+            <li>NFC-e automática (cupom fiscal)</li>
+            <li>Leitor de código de barras</li>
+            <li>Múltiplas formas de pagamento</li>
+            <li>Sangria, suprimento e fechamento</li>
+            <li>Funciona offline</li>
+          </ul>
+        </div>
+
+        <!-- Serviços -->
+        <div class="solution-card reveal reveal-delay-2">
+          <div class="card-icon-wrap violet">🔧</div>
+          <h3>Gestão de Serviços</h3>
+          <p>Para prestadores de serviços, oficinas, clínicas e empresas que trabalham com ordens de serviço.</p>
+          <ul class="solution-features">
+            <li>Ordem de Serviço digital</li>
+            <li>Agenda e compromissos</li>
+            <li>Controle de peças usadas</li>
+            <li>Histórico do cliente</li>
+            <li>NFS-e (Nota de Serviço)</li>
+          </ul>
+        </div>
+
+        <!-- Fiscal -->
+        <div class="solution-card reveal reveal-delay-3">
+          <div class="card-icon-wrap green">📄</div>
+          <h3>Módulo Fiscal</h3>
+          <p>Emissão de notas fiscais eletrônicas totalmente integrada e validada com a SEFAZ.</p>
+          <ul class="solution-features">
+            <li>NF-e (Produto)</li>
+            <li>NFC-e (Consumidor Final)</li>
+            <li>NFS-e (Serviço)</li>
+            <li>SPED / EFD automático</li>
+            <li>SAT e MFE</li>
+          </ul>
+        </div>
+
+        <!-- Financeiro -->
+        <div class="solution-card reveal reveal-delay-1">
+          <div class="card-icon-wrap orange">💰</div>
+          <h3>Financeiro</h3>
+          <p>Controle total do fluxo de caixa, contas a pagar, receber e DRE mensal sem complicação.</p>
+          <ul class="solution-features">
+            <li>Contas a pagar e receber</li>
+            <li>Fluxo de caixa diário</li>
+            <li>Conciliação bancária</li>
+            <li>DRE e Balanço</li>
+            <li>Boleto e PIX automático</li>
+          </ul>
+        </div>
+
+        <!-- Relatórios -->
+        <div class="solution-card reveal reveal-delay-2">
+          <div class="card-icon-wrap rose">📊</div>
+          <h3>Relatórios & BI</h3>
+          <p>Dashboards e relatórios gerenciais para você tomar decisões baseadas em dados reais do seu negócio.</p>
+          <ul class="solution-features">
+            <li>Ranking de produtos mais vendidos</li>
+            <li>Análise por período</li>
+            <li>Curva ABC de clientes</li>
+            <li>Gráficos em tempo real</li>
+            <li>Exportação para Excel/PDF</li>
+          </ul>
+        </div>
+
+        <!-- Integrações & IA -->
+        <div class="solution-card reveal reveal-delay-3" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; text-align: center;">
+          <div class="card-icon-wrap" style="background: linear-gradient(135deg, #8B5CF6, #3B82F6); color: white; display: inline-flex; justify-content: center;">🤖</div>
+          <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: #8B5CF6; border-color: rgba(139, 92, 246, 0.2); margin-bottom: 12px; margin-left: auto; margin-right: auto;">✨ Novo</span>
+          <h3>Automações & IA</h3>
+          <p>Potencialize sua operação com Inteligência Artificial e integre seu ERP com os maiores canais de venda.</p>
+          <ul class="solution-features" style="text-align: left; display: inline-block; margin-top: 15px;">
+            <li>Integrações nativas com Marketplaces</li>
+            <li>Automação de WhatsApp com IA (Atendimento)</li>
+            <li>Automações específicas de processos</li>
+            <li>CRM com Integração Completa</li>
+            <li>Fluxos de funil de vendas inteligentes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MÓDULOS / FUNCIONALIDADES ═══ -->
+  <section class="modules section" id="funcionalidades">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag reveal">⚙️ Funcionalidades</span>
+        <h2 class="section-title reveal">Mais de 30 módulos<br><span class="text-gradient">integrados</span></h2>
+        <p class="section-subtitle reveal">Uma plataforma completa que cresce junto com o seu negócio.</p>
+      </div>
+
+      <div class="modules-grid">
+        <div class="module-item reveal">
+          <div class="module-emoji">📦</div>
+          <h4>Controle de Estoque</h4>
+          <p>Entrada, saída, inventário e alertas automáticos</p>
+        </div>
+        <div class="module-item reveal reveal-delay-1">
+          <div class="module-emoji">🛒</div>
+          <h4>Ponto de Venda</h4>
+          <p>Caixa rápido com leitor de barras e múltiplos pagamentos</p>
+        </div>
+        <div class="module-item reveal reveal-delay-2">
+          <div class="module-emoji">📄</div>
+          <h4>Nota Fiscal Eletrônica</h4>
+          <p>NF-e, NFC-e e NFS-e integradas com SEFAZ</p>
+        </div>
+        <div class="module-item reveal reveal-delay-3">
+          <div class="module-emoji">💳</div>
+          <h4>Contas a Receber</h4>
+          <p>Boleto, PIX, cartão e parcelamentos</p>
+        </div>
+        <div class="module-item reveal">
+          <div class="module-emoji">💸</div>
+          <h4>Contas a Pagar</h4>
+          <p>Controle de despesas e vencimentos</p>
+        </div>
+        <div class="module-item reveal reveal-delay-1">
+          <div class="module-emoji">👥</div>
+          <h4>CRM de Clientes</h4>
+          <p>Histórico, aniversários e programa de fidelidade</p>
+        </div>
+        <div class="module-item reveal reveal-delay-2">
+          <div class="module-emoji">🏭</div>
+          <h4>Fornecedores</h4>
+          <p>Cadastro, pedidos e cotações simplificados</p>
+        </div>
+        <div class="module-item reveal reveal-delay-3">
+          <div class="module-emoji">🔧</div>
+          <h4>Ordem de Serviço</h4>
+          <p>Abertura, peças, técnico e encerramento digital</p>
+        </div>
+        <div class="module-item reveal">
+          <div class="module-emoji">📊</div>
+          <h4>Relatórios Gerenciais</h4>
+          <p>Vendas, estoque, financeiro e BI</p>
+        </div>
+        <div class="module-item reveal reveal-delay-1">
+          <div class="module-emoji">🏷️</div>
+          <h4>Etiquetas e Código de Barra</h4>
+          <p>Impressão em lote de etiquetas de produtos</p>
+        </div>
+        <div class="module-item reveal reveal-delay-2">
+          <div class="module-emoji">🖨️</div>
+          <h4>Impressão Térmica</h4>
+          <p>Cupom não fiscal e pedidos para cozinha</p>
+        </div>
+        <div class="module-item reveal reveal-delay-3">
+          <div class="module-emoji">☁️</div>
+          <h4>Backup em Nuvem</h4>
+          <p>Seus dados seguros com backup automático diário</p>
+        </div>
+        <div class="module-item reveal">
+          <div class="module-emoji">🛒</div>
+          <h4>Marketplaces</h4>
+          <p>Sincronize estoque com Mercado Livre, Shopee etc.</p>
+        </div>
+        <div class="module-item reveal reveal-delay-1">
+          <div class="module-emoji">🤖</div>
+          <h4>WhatsApp IA</h4>
+          <p>Atendimento e automação impulsionados por IA</p>
+        </div>
+        <div class="module-item reveal reveal-delay-2">
+          <div class="module-emoji">⚡</div>
+          <h4>Automações</h4>
+          <p>Crie fluxos de trabalho e elimine tarefas manuais</p>
+        </div>
+        <div class="module-item reveal reveal-delay-3">
+          <div class="module-emoji">🔗</div>
+          <h4>CRM Integrado</h4>
+          <p>Gerencie todo o relacionamento e integrações</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ POR QUE SJDATA ═══ -->
+  <section class="why section" id="porque">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <span class="section-tag reveal">🏆 Por que SJData?</span>
+          <h2 class="section-title reveal">
+            A escolha certa para<br>
+            <span class="text-gradient">sua empresa</span>
+          </h2>
+          <p class="section-subtitle reveal" style="margin-bottom:0">
+            Diferente das grandes plataformas, entendemos o mercado local e oferecemos suporte real.
+          </p>
+
+          <div class="why-reasons">
+            <div class="why-reason reveal">
+              <div class="reason-icon">🏘️</div>
+              <div>
+                <h4>Suporte Rápido e Humanizado</h4>
+                <p>Nossa equipe de especialistas está sempre pronta para ajudar. Você não fica esperando em intermináveis filas de atendimento.</p>
+              </div>
+            </div>
+            <div class="why-reason reveal reveal-delay-1">
+              <div class="reason-icon">💡</div>
+              <div>
+                <h4>Sistema Intuitivo, Zero Burocracia</h4>
+                <p>Treinamento em 1 hora. Sua equipe aprende rapidamente sem manuais de 200 páginas.</p>
+              </div>
+            </div>
+            <div class="why-reason reveal reveal-delay-2">
+              <div class="reason-icon">💰</div>
+              <div>
+                <h4>Custo-Benefício Imbatível</h4>
+                <p>Preço justo para a realidade do empresário brasileiro. Sem letras miúdas ou cobranças surpresa.</p>
+              </div>
+            </div>
+            <div class="why-reason reveal reveal-delay-3">
+              <div class="reason-icon">🔄</div>
+              <div>
+                <h4>Atualizações Grátis e Constantes</h4>
+                <p>Mudou a legislação fiscal? O sistema já é atualizado automaticamente sem custo adicional.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-visual reveal">
+          <div class="why-stat-card">
+            <div class="ws-icon">📈</div>
+            <div>
+              <div class="ws-num" data-count="500" data-suffix="+">500+</div>
+              <div class="ws-label">Empresas confiam na SJData</div>
+            </div>
+          </div>
+          <div class="why-stat-card">
+            <div class="ws-icon">⏱️</div>
+            <div>
+              <div class="ws-num" data-count="4" data-suffix="h">4h</div>
+              <div class="ws-label">Tempo médio de implantação</div>
+            </div>
+          </div>
+          <div class="why-stat-card">
+            <div class="ws-icon">🏆</div>
+            <div>
+              <div class="ws-num" data-count="99" data-suffix="%">99%</div>
+              <div class="ws-label">Índice de satisfação dos clientes</div>
+            </div>
+          </div>
+          <div class="why-stat-card">
+            <div class="ws-icon">🔧</div>
+            <div>
+              <div class="ws-num">2h</div>
+              <div class="ws-label">Tempo médio de resposta ao suporte</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DEPOIMENTOS ═══ -->
+  <section class="testimonials section" id="depoimentos">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag reveal">💬 Depoimentos</span>
+        <h2 class="section-title reveal">O que nossos clientes<br><span class="text-gradient">falam da SJData</span></h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="stars">★★★★★</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">
+            Desde que implantamos o sistema da SJData, reduzi o tempo de caixa pela metade. 
+            A emissão de NFC-e agora é automática e nunca tivemos problemas com a SEFAZ.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MT</div>
+            <div class="author-info">
+              <strong>Marcelo Teixeira</strong>
+              <span>Proprietário — Supermercado Teixeira</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">
+            Trabalho com assistência técnica e o módulo de Ordem de Serviço mudou minha vida. 
+            Hoje controlo peças, técnicos e histórico de cada cliente sem papel.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RS</div>
+            <div class="author-info">
+              <strong>Ricardo Santos</strong>
+              <span>Dono — TechFix Assistência Técnica</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">
+            O suporte é incrível! Quando tive um problema no fechamento do mês, 
+            ligaram para mim em menos de 1 hora e resolveram tudo remotamente. 
+            Não troco por nada.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AC</div>
+            <div class="author-info">
+              <strong>Ana Camargo</strong>
+              <span>Gerente — Loja Camargo Moda</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-section section">
+    <div class="container">
+      <div class="cta-box reveal">
+        <span class="section-tag" style="display:inline-flex; margin-bottom:20px">🚀 Comece Agora</span>
+        <h2>
+          Pronto para transformar<br>
+          <span class="text-gradient">a gestão do seu negócio?</span>
+        </h2>
+        <p>
+          Acesse agora mesmo o nosso ambiente de demonstração ou agende um contato com o consultor.
+        </p>
+        <div class="cta-actions">
+          <a href="demo.html" class="btn btn-primary btn-lg" target="_blank">
+            🚀 Acessar Demonstração Grátis
+          </a>
+          <a href="https://wa.me/5511976695896?text=Olá!%20Quero%20agendar%20uma%20demonstração%20do%20sistema%20SJData." 
+             class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink:0;">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+            </svg>
+            Chamar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTATO ═══ -->
+  <section class="contact section" id="contato">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-tag reveal">📞 Fale Conosco</span>
+          <h2 class="section-title reveal">
+            Vamos conversar<br>
+            <span class="text-gradient">sobre o seu negócio</span>
+          </h2>
+          <p class="section-subtitle reveal">
+            Nossa equipe está pronta para entender a sua necessidade 
+            e mostrar como a SJData pode transformar sua gestão.
+          </p>
+
+          <div class="contact-channels">
+            <a href="https://wa.me/5511976695896" class="channel-item reveal" target="_blank" rel="noopener">
+              <div class="channel-icon green">💬</div>
+              <div>
+                <strong>WhatsApp | Vendas</strong>
+                <span>(11) 97669-5896</span>
+              </div>
+            </a>
+            <a href="https://wa.me/5511998798901" class="channel-item reveal" target="_blank" rel="noopener">
+              <div class="channel-icon green">💬</div>
+              <div>
+                <strong>WhatsApp | Suporte</strong>
+                <span>(11) 99879-8901</span>
+              </div>
+            </a>
+            <a href="mailto:sjdata@sjdata.com.br" class="channel-item reveal reveal-delay-1">
+              <div class="channel-icon blue">✉️</div>
+              <div>
+                <strong>E-mail</strong>
+                <span>sjdata@sjdata.com.br</span>
+              </div>
+            </a>
+            <div class="channel-item reveal reveal-delay-3">
+              <div class="channel-icon gray">⏰</div>
+              <div>
+                <strong>Horário de Atendimento</strong>
+                <span>Seg–Sex: 08h–18h | Sáb: 08h–13h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card reveal">
+          <h3 class="form-title">📋 Solicitar Demonstração Gratuita</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome *</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+              </div>
+              <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefone">WhatsApp / Telefone *</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 0 0000-0000" required>
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="produto">Interesse Principal</label>
+              <select id="produto" name="produto">
+                <option value="">Selecione uma opção...</option>
+                <option value="ERP Completo">ERP Completo</option>
+                <option value="PDV - Ponto de Venda">PDV — Ponto de Venda</option>
+                <option value="Gestão de Serviços">Gestão de Serviços (OS)</option>
+                <option value="Módulo Fiscal (NF-e/NFC-e)">Módulo Fiscal (NF-e / NFC-e)</option>
+                <option value="Automações e IA">Automações com IA / WhatsApp / Integração Marketplace</option>
+                <option value="Sistema Completo">Sistema Completo</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre seu negócio e o que precisa..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-whatsapp btn-lg" style="width:100%; justify-content:center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink:0;">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+              </svg>
+              Enviar pelo WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="display:inline-block; margin-bottom: 24px;">
+            <img src="img/logo.png" alt="SJData Logo" style="height: 72px; width: auto; object-fit: contain; transform: scale(1.4); transform-origin: left center;">
+          </a>
+          <p class="footer-desc">
+            Software de gestão para comércio, varejo e serviços. 
+            Transformando a realidade de empresas brasileiras há mais de 10 anos.
+          </p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/sjdata.sistemas/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+            <a href="https://www.facebook.com/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">👥</a>
+            <a href="https://tiktok.com/" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
+            <a href="https://x.com/" class="social-link" target="_blank" rel="noopener" aria-label="X (Twitter)">🐦</a>
+            <a href="https://wa.me/5511976695896" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink:0;">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Soluções</h5>
+          <ul>
+            <li><a href="#solucoes">ERP Completo</a></li>
+            <li><a href="#solucoes">PDV — Frente de Caixa</a></li>
+            <li><a href="#solucoes">Gestão de Serviços</a></li>
+            <li><a href="#solucoes">Módulo Fiscal</a></li>
+            <li><a href="#solucoes">Financeiro</a></li>
+            <li><a href="#solucoes">Relatórios & BI</a></li>
+            <li><a href="#solucoes">Integrações & IA</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#sobre">Sobre a SJData</a></li>
+            <li><a href="#porque">Por que SJData?</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contato</h5>
+          <ul>
+            <li style="display:flex; align-items:center; gap:6px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="#25D366" viewBox="0 0 16 16" style="flex-shrink:0;">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+              </svg>
+              <a href="https://wa.me/5511976695896" target="_blank">WhatsApp (Vendas)</a>
+            </li>
+            <li style="display:flex; align-items:center; gap:6px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="#25D366" viewBox="0 0 16 16" style="flex-shrink:0;">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+              </svg>
+              <a href="https://wa.me/5511998798901" target="_blank">WhatsApp (Suporte)</a>
+            </li>
+            <li><a href="mailto:sjdata@sjdata.com.br">✉️ E-mail</a></li>
+            <li><a href="demo.html" target="_blank">🚀 Acessar Demo ERP</a></li>
+          </ul>
+          <div style="margin-top: 20px; padding: 16px; background: rgba(37,99,235,0.08); border-radius: 12px; border: 1px solid rgba(37,99,235,0.2);">
+            <div style="font-size:0.75rem; color: var(--color-muted); margin-bottom:4px;">Horário de atendimento</div>
+            <div style="font-size:0.85rem; font-weight:600;">Seg–Sex: 08h–18h</div>
+            <div style="font-size:0.85rem; font-weight:600;">Sáb: 08h–13h</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 SJData Sistemas. Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ FLOATING WHATSAPP ═══ -->
+  <a href="https://wa.me/5511976695896?text=Olá!%20Tenho%20interesse%20no%20sistema%20SJData." 
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+     <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink:0;">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+    </svg>
+    <span class="wa-tooltip">Fale conosco no WhatsApp!</span>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
