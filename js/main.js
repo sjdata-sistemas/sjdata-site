@@ -1,6 +1,6 @@
 /**
  * SJDATA — Site Principal
- * Interatividade e Animações
+ * Interatividade e Animações - CORRIGIDO
  * 2026
  */
 
@@ -12,25 +12,25 @@ const navCta = document.querySelector('.nav-cta');
 
 window.addEventListener('scroll', () => {
   if (window.scrollY > 20) {
-    navbar.classList.add('scrolled');
+    navbar?.classList.add('scrolled');
   } else {
-    navbar.classList.remove('scrolled');
+    navbar?.classList.remove('scrolled');
   }
 });
 
 // ─── MENU HAMBURGER ───
 navToggle?.addEventListener('click', () => {
   navToggle.classList.toggle('active');
-  navLinks.classList.toggle('open');
-  navCta.classList.toggle('open');
+  navLinks?.classList.toggle('open');
+  navCta?.classList.toggle('open');
 });
 
 // Fechar menu ao clicar em link
 navLinks?.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
-    navToggle.classList.remove('active');
-    navLinks.classList.remove('open');
-    navCta.classList.remove('open');
+    navToggle?.classList.remove('active');
+    navLinks?.classList.remove('open');
+    navCta?.classList.remove('open');
   });
 });
 
@@ -69,9 +69,12 @@ document.querySelectorAll('.reveal').forEach(el => {
 // ─── COUNTER ANIMATION ───
 function animateCounter(el) {
   const target = parseInt(el.dataset.count);
+  if (isNaN(target)) return;
   const suffix = el.dataset.suffix || '';
   const duration = 2000;
-  const step = target / (duration / 16);
+  const framesPerSecond = 60;
+  const totalFrames = duration / (1000 / framesPerSecond);
+  const step = target / totalFrames;
   let current = 0;
 
   const timer = setInterval(() => {
@@ -81,7 +84,7 @@ function animateCounter(el) {
       clearInterval(timer);
     }
     el.textContent = Math.floor(current) + suffix;
-  }, 16);
+  }, 1000 / framesPerSecond);
 }
 
 const counterObserver = new IntersectionObserver((entries) => {
@@ -114,17 +117,29 @@ contactForm?.addEventListener('submit', function(e) {
     return;
   }
 
-  // Enviar via WhatsApp
-  const text = `Olá! Me chamo *${nome}*${empresa ? ` e trabalho na *${empresa}*` : ''}.%0A%0ATenho interesse em: *${produto || 'Sistema SJDATA'}*%0A%0A${msg ? `Mensagem: ${msg}` : 'Gostaria de mais informações.'}%0A%0ATelefone: ${telefone}`;
-  const waUrl = `https://wa.me/5511976695896?text=${text}`;
+  // Número fixo correto conforme solicitado: (11) 97669-5896
+  const WHATSAPP_DESTINO = "5511976695896";
 
-  btn.textContent = '✓ Enviando...';
+  // Construção da mensagem com codificação segura
+  let mensagemTexto = `Olá! Me chamo *${nome}*`;
+  if (empresa) mensagemTexto += ` e trabalho na *${empresa}*`;
+  mensagemTexto += `.\n\nTenho interesse em: *${produto || 'Sistema SJDATA'}*`;
+  if (msg) mensagemTexto += `\n\nMensagem: ${msg}`;
+  mensagemTexto += `\n\nTelefone de contato: ${telefone}`;
+
+  const waUrl = `https://wa.me/${WHATSAPP_DESTINO}?text=${encodeURIComponent(mensagemTexto)}`;
+
+  // Feedback Visual
+  const originalText = btn.textContent;
+  btn.textContent = '✓ Redirecionando...';
+  btn.classList.add('loading'); // Se houver estilo de loading
   btn.style.opacity = '0.7';
 
   setTimeout(() => {
     window.open(waUrl, '_blank');
-    btn.textContent = 'Enviar pelo WhatsApp';
+    btn.textContent = originalText;
     btn.style.opacity = '1';
+    btn.classList.remove('loading');
     showToast('Redirecionando para o WhatsApp! 🚀', 'success');
     this.reset();
   }, 800);
@@ -142,39 +157,55 @@ function showToast(message, type = 'success') {
     bottom: 100px;
     right: 28px;
     z-index: 9999;
-    background: ${type === 'success' ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'};
-    border: 1px solid ${type === 'success' ? 'rgba(16,185,129,0.4)' : 'rgba(239,68,68,0.4)'};
-    color: ${type === 'success' ? '#6EE7B7' : '#FCA5A5'};
+    background: ${type === 'success' ? 'rgba(16,185,129,0.9)' : 'rgba(239,68,68,0.9)'};
+    border: 1px solid ${type === 'success' ? '#10B981' : '#EF4444'};
+    color: #fff;
     padding: 14px 20px;
     border-radius: 12px;
-    font-family: var(--font);
+    font-family: sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     animation: slideInRight 0.3s ease;
-    max-width: 300px;
+    max-width: 310px;
   `;
   toast.textContent = message;
 
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(20px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-  `;
-  document.head.appendChild(style);
+  // Garantir que o estilo da animação exista
+  if (!document.getElementById('toast-animation')) {
+    const style = document.createElement('style');
+    style.id = 'toast-animation';
+    style.textContent = `
+      @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(20px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
   document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 4000);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(20px)';
+    toast.style.transition = 'all 0.3s ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
 }
 
 // ─── TELEFONE MASK ───
-document.getElementById('telefone')?.addEventListener('input', function() {
+const telInput = document.getElementById('telefone');
+telInput?.addEventListener('input', function(e) {
   let v = this.value.replace(/\D/g, '');
   if (v.length > 11) v = v.slice(0, 11);
-  if (v.length > 6) {
+  
+  if (v.length > 10) {
+    // Celular: (XX) XXXXX-XXXX
     v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  } else if (v.length > 6) {
+    // Fixo ou celular incompleto: (XX) XXXX-XXXX
+    v = `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}`;
   } else if (v.length > 2) {
     v = `(${v.slice(0,2)}) ${v.slice(2)}`;
   } else if (v.length > 0) {
@@ -190,16 +221,16 @@ const navLinkItems = document.querySelectorAll('.nav-links a[href^="#"]');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
+    const sectionTop = section.offsetTop - 120;
     if (window.scrollY >= sectionTop) {
       current = section.getAttribute('id');
     }
   });
 
   navLinkItems.forEach(link => {
-    link.style.color = '';
+    link.classList.remove('active');
     if (link.getAttribute('href') === `#${current}`) {
-      link.style.color = 'var(--color-text)';
+      link.classList.add('active');
     }
   });
 });
