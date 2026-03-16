@@ -116,7 +116,7 @@ contactForm?.addEventListener('submit', function(e) {
 
   // Enviar via WhatsApp
   const text = `Olá! Me chamo *${nome}*${empresa ? ` e trabalho na *${empresa}*` : ''}.%0A%0ATenho interesse em: *${produto || 'Sistema SJDATA'}*%0A%0A${msg ? `Mensagem: ${msg}` : 'Gostaria de mais informações.'}%0A%0ATelefone: ${telefone}`;
-  const waUrl = `https://wa.me/5500000000000?text=${text}`;
+  const waUrl = `https://wa.me/5511976695896?text=${text}`;
 
   btn.textContent = '✓ Enviando...';
   btn.style.opacity = '0.7';
