@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SJDATA ERP | PDV com NFC-e, estoque e financeiro para comércio em SP</title>
-<meta name="description" content="Sistema de gestão para padarias, mercados, lojas e restaurantes do estado de São Paulo: PDV com NFC-e no caixa, NF-e, estoque que baixa sozinho e financeiro completo. Tire dúvidas pelo WhatsApp.">
+<title>SJDATA ERP | PDV com NFC-e, estoque e financeiro para pequenos comércios</title>
+<meta name="description" content="Sistema de gestão para padarias, mercados, lojas e restaurantes: PDV com NFC-e no caixa, NF-e, estoque que baixa sozinho e financeiro completo. Tire dúvidas pelo WhatsApp.">
 <meta property="og:title" content="SJDATA ERP — venda, emita a nota e controle o estoque no mesmo sistema">
-<meta property="og:description" content="PDV com NFC-e, estoque automático e financeiro para o comércio de SP. Sem plano básico e sem módulo bloqueado.">
+<meta property="og:description" content="PDV com NFC-e, estoque automático e financeiro para o pequeno comércio. Sem plano básico e sem módulo bloqueado.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@38696ab8f2ff8ac2c0e6874a7f14d5d296aa73f7/publicado/img/hero-padaria.webp">
 <meta property="og:url" content="https://sjdata.com.br/">
@@ -257,7 +257,6 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="selo"><svg class="ico" style="width:16px;height:16px"><use href="#i-pin"/></svg>Para o comércio do estado de São Paulo</span>
       <h1 id="h1">Venda, emita a nota e controle o estoque <em>no mesmo sistema.</em></h1>
       <p class="sub" id="sub">PDV com NFC-e direto no caixa, estoque que baixa sozinho a cada venda e financeiro completo. Feito para padarias, mercados, lojas e restaurantes.</p>
       <div class="ctas">
@@ -495,7 +494,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
 
 <footer>
   <div class="wrap rod">
-    <div><div class="marca" style="font-size:1.3rem;color:var(--txt)">sjdata<b>.</b></div><p style="margin-top:8px;max-width:340px">Sistema de gestão com PDV e nota fiscal para o comércio do estado de São Paulo.</p></div>
+    <div><div class="marca" style="font-size:1.3rem;color:var(--txt)">sjdata<b>.</b></div><p style="margin-top:8px;max-width:340px">Sistema de gestão com PDV e nota fiscal para o pequeno comércio.</p></div>
     <div><p><a href="https://wa.me/5511976695896" target="_blank" rel="noopener" onclick="trackWhats('rodape')">(11) 97669-5896</a></p><p><a href="mailto:contato@sjdata.com.br">contato@sjdata.com.br</a></p><p><a href="https://sjdata-erp-sistemas.lovable.app/auth">Acessar o sistema</a></p></div>
     <div><p>© 2026 SJDATA — Soluções em Dados, IA e Tecnologia</p></div>
   </div>
@@ -511,10 +510,10 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
   // Abas de segmento + ?seg= vindo do anúncio
   var abas=[].slice.call(document.querySelectorAll('.aba'));
   var textos={
-    padaria:['Da balança ao cupom fiscal, <em>no mesmo caixa.</em>','PDV que lê a etiqueta da balança, NFC-e na hora e estoque com alerta de validade. Feito para padarias e confeitarias de SP.'],
-    mercado:['Caixa rápido e estoque <em>que se repõe certo.</em>','Leitor de código de barras, NFC-e no caixa, entrada de mercadoria pelo XML e sugestão de compra. Para mercados e conveniências de SP.'],
-    loja:['Venda, contas a receber e estoque <em>no mesmo sistema.</em>','NFC-e no balcão, contas a receber, permissões por vendedora e estoque atualizado a cada venda. Para lojas de SP.'],
-    restaurante:['Mesas, comandas e delivery <em>fechando no mesmo caixa.</em>','Comandas e mesas, pedidos de delivery com aviso por WhatsApp e NFC-e no fechamento. Para restaurantes e bares de SP.']
+    padaria:['Da balança ao cupom fiscal, <em>no mesmo caixa.</em>','PDV que lê a etiqueta da balança, NFC-e na hora e estoque com alerta de validade. Feito para padarias e confeitarias.'],
+    mercado:['Caixa rápido e estoque <em>que se repõe certo.</em>','Leitor de código de barras, NFC-e no caixa, entrada de mercadoria pelo XML e sugestão de compra. Para mercados e conveniências.'],
+    loja:['Venda, contas a receber e estoque <em>no mesmo sistema.</em>','NFC-e no balcão, contas a receber, permissões por vendedora e estoque atualizado a cada venda. Para lojas.'],
+    restaurante:['Mesas, comandas e delivery <em>fechando no mesmo caixa.</em>','Comandas e mesas, pedidos de delivery com aviso por WhatsApp e NFC-e no fechamento. Para restaurantes e bares.']
   };
   function abrir(seg,origem){
     var achou=false;
