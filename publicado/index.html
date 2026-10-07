@@ -8,7 +8,7 @@
 <meta property="og:title" content="SJDATA ERP — venda, emita a nota e controle o estoque no mesmo sistema">
 <meta property="og:description" content="PDV com NFC-e, estoque automático e financeiro para o comércio de SP. Sem plano básico e sem módulo bloqueado.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://sjdata.com.br/img/hero-padaria.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@f6db423f75868f27e18a132709d224a686b183ad/publicado/img/hero-padaria.webp">
 <meta property="og:url" content="https://sjdata.com.br/">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSIjRDlFRDRGIi8+PHRleHQgeD0iNjAiIHk9Ijg2IiBmb250LXNpemU9IjgwIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjMEEwQTBBIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iT3V0Zml0LEFyaWFsLHNhbnMtc2VyaWYiPnM8L3RleHQ+PC9zdmc+">
@@ -37,7 +37,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
 <style>
 :root{
 --bg:#0B0B0A;--bg2:#131311;--card:#1A1A17;--linha:rgba(255,255,255,.10);
---txt:#F7F7F2;--txt2:#B4B4AC;--txt3:#86867F;--lima:#D9ED4F;--verde:#16A34A;--verde2:#15803D;
+--txt:#F7F7F2;--txt2:#B4B4AC;--txt3:#86867F;--lima:#D9ED4F;--verde:#15803D;--verde2:#166534;
 --claro:#F6F5EF;--claro2:#ECEAE1;--tinta:#16160F;--tinta2:#55554C;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -49,7 +49,7 @@ img{max-width:100%;display:block}
 h1,h2,h3{font-family:'Outfit',sans-serif;letter-spacing:-.025em;line-height:1.1}
 h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:14px}
 .lead{color:var(--txt2);font-size:1.08rem;max-width:640px}
-section{padding:84px 0}
+section{padding:84px 0;scroll-margin-top:66px}
 .tag{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lima);margin-bottom:12px}
 .ico{width:22px;height:22px;flex:0 0 22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
@@ -155,6 +155,7 @@ h1 em{font-style:normal;color:var(--lima)}
 
 /* formulário */
 .contato{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+#formLead{scroll-margin-top:80px}
 .form{background:#fff;color:var(--tinta);border-radius:22px;padding:28px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
 .form h3{font-size:1.4rem;margin-bottom:4px}
 .form .s{color:var(--tinta2);font-size:.92rem;margin-bottom:18px}
@@ -269,7 +270,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
       </div>
     </div>
     <div class="foto">
-      <img id="heroImg" src="/img/hero-padaria.webp" alt="Dona de padaria no caixa atendendo um cliente" width="960" height="720" fetchpriority="high">
+      <img id="heroImg" src="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@f6db423f75868f27e18a132709d224a686b183ad/publicado/img/hero-padaria.webp" alt="Dona de padaria no caixa atendendo um cliente" width="960" height="720" fetchpriority="high">
       <div class="nota">
         <div class="ok"><svg class="ico"><use href="#i-check"/></svg></div>
         <div><b>Venda finalizada, nota emitida</b><small>NFC-e autorizada e estoque atualizado</small></div>
@@ -281,9 +282,9 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
 <div class="faixa">
   <div class="wrap">
     <div class="fx"><svg class="ico"><use href="#i-grafico"/></svg><div><b>+200 mil vendas</b><span>já registradas no sistema</span></div></div>
-    <div class="fx"><svg class="ico"><use href="#i-nota"/></svg><div><b>NFC-e e NF-e</b><span>emitidas direto na SEFAZ</span></div></div>
+    <div class="fx"><svg class="ico"><use href="#i-nota"/></svg><div><b>NFC-e e NF-e</b><span>autorizadas pela SEFAZ</span></div></div>
     <div class="fx"><svg class="ico"><use href="#i-fala"/></svg><div><b>Suporte humano</b><span>pelo WhatsApp</span></div></div>
-    <div class="fx"><svg class="ico"><use href="#i-escudo"/></svg><div><b>Sem fidelidade</b><span>seus dados são seus</span></div></div>
+    <div class="fx"><svg class="ico"><use href="#i-escudo"/></svg><div><b>Teste de 7 dias</b><span>sem cartão de crédito</span></div></div>
   </div>
 </div>
 
@@ -301,22 +302,22 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     </div>
 
     <div class="seg ativo" id="seg-padaria" role="tabpanel">
-      <div class="img"><img src="/img/seg-padaria.webp" alt="Atendente de padaria no caixa" width="720" height="540"></div>
+      <div class="img"><img src="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@f6db423f75868f27e18a132709d224a686b183ad/publicado/img/seg-padaria.webp" alt="Atendente de padaria no caixa" width="720" height="540"></div>
       <div>
         <h3>Padaria e confeitaria</h3>
         <p class="d">Pão no peso, salgado na vitrine e fila no caixa de manhã. O sistema acompanha esse ritmo.</p>
         <ul class="lista">
-          <li><svg class="ico"><use href="#i-check"/></svg><span><b>Etiqueta da balança no caixa:</b> o leitor lê o código da balança Toledo e já traz peso e preço.</span></li>
+          <li><svg class="ico"><use href="#i-check"/></svg><span><b>Etiqueta da balança no caixa:</b> o leitor lê a etiqueta da balança Toledo e lança o item com o valor certo.</span></li>
           <li><svg class="ico"><use href="#i-check"/></svg><span><b>Alerta de validade</b> para o que vence logo e lista do que está parado sem vender.</span></li>
           <li><svg class="ico"><use href="#i-check"/></svg><span><b>Comandas</b> para quem toma café no balcão e paga na saída.</span></li>
-          <li><svg class="ico"><use href="#i-check"/></svg><span><b>NFC-e emitida na hora</b>, sem segurar a fila.</span></li>
+          <li><svg class="ico"><use href="#i-check"/></svg><span><b>NFC-e emitida no próprio caixa</b>, junto com a venda.</span></li>
         </ul>
         <a class="btn btn-wa" href="https://wa.me/5511976695896?text=Ol%C3%A1!%20Tenho%20uma%20padaria%20e%20quero%20conhecer%20o%20sistema." target="_blank" rel="noopener" onclick="trackWhats('seg_padaria')"><svg class="ico"><use href="#i-wa"/></svg>Falar sobre minha padaria</a>
       </div>
     </div>
 
     <div class="seg" id="seg-mercado" role="tabpanel">
-      <div class="img"><img src="/img/seg-mercado.webp" alt="Operador de caixa de mercado passando produto no leitor" width="720" height="540"></div>
+      <div class="img"><img src="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@f6db423f75868f27e18a132709d224a686b183ad/publicado/img/seg-mercado.webp" loading="lazy" alt="Operador de caixa de mercado passando produto no leitor" width="720" height="540"></div>
       <div>
         <h3>Mercado e conveniência</h3>
         <p class="d">Muito produto, muita reposição. O sistema faz a conta para você não comprar errado.</p>
@@ -331,10 +332,10 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     </div>
 
     <div class="seg" id="seg-loja" role="tabpanel">
-      <div class="img"><img src="/img/seg-loja.webp" alt="Dona de loja de roupas embalando uma compra" width="720" height="540"></div>
+      <div class="img"><img src="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@f6db423f75868f27e18a132709d224a686b183ad/publicado/img/seg-loja.webp" loading="lazy" alt="Dona de loja de roupas embalando uma compra" width="720" height="540"></div>
       <div>
         <h3>Loja de roupas e varejo</h3>
-        <p class="d">Venda no balcão, parcelado no crediário e controle do que entra e sai da loja.</p>
+        <p class="d">Venda no balcão, venda a prazo e controle do que entra e sai da loja.</p>
         <ul class="lista">
           <li><svg class="ico"><use href="#i-check"/></svg><span><b>Contas a receber e parcelamento</b> para quem vende a prazo.</span></li>
           <li><svg class="ico"><use href="#i-check"/></svg><span><b>Usuários com permissão</b> para cada vendedora e senha de gerente para desconto e cancelamento.</span></li>
@@ -346,7 +347,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     </div>
 
     <div class="seg" id="seg-restaurante" role="tabpanel">
-      <div class="img"><img src="/img/seg-restaurante.webp" alt="Garçom anotando pedido em restaurante" width="720" height="540"></div>
+      <div class="img"><img src="https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@f6db423f75868f27e18a132709d224a686b183ad/publicado/img/seg-restaurante.webp" loading="lazy" alt="Garçom anotando pedido em restaurante" width="720" height="540"></div>
       <div>
         <h3>Restaurante e bar</h3>
         <p class="d">Mesa aberta, comanda correndo e delivery chegando. Tudo fecha no mesmo caixa.</p>
@@ -376,10 +377,6 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
       <div class="card"><div class="ic"><svg class="ico"><use href="#i-user"/></svg></div><h3>Equipe sob controle</h3><p>Um usuário para cada pessoa, com permissões por função e senha de gerente para desconto e cancelamento.</p></div>
     </div>
 
-    <div class="telas">
-      <div class="tela"><div class="barra"><i></i><i></i><i></i></div><img src="/img/tela-painel.jpg" alt="Tela real do painel do SJDATA ERP com alertas de estoque baixo"><p><b>Painel do dia:</b> vendas, produtos cadastrados e o que precisa repor. Tela real do sistema.</p></div>
-      <div class="tela"><div class="barra"><i></i><i></i><i></i></div><img src="/img/tela-estoque.jpg" alt="Tela real de estoque do SJDATA ERP com curva ABC"><p><b>Estoque:</b> curva ABC, estoque baixo e últimas movimentações. Tela real do sistema.</p></div>
-    </div>
   </div>
 </section>
 
@@ -391,7 +388,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     <div class="passos">
       <div class="passo"><h3>Conversa rápida</h3><p>Pelo WhatsApp, você conta como é a sua loja: o que vende, quantos caixas, como emite nota hoje.</p></div>
       <div class="passo"><h3>Demonstração de verdade</h3><p>Mostramos o sistema com a rotina do seu segmento e conferimos se os seus equipamentos servem.</p></div>
-      <div class="passo"><h3>Implantação assistida</h3><p>Configuramos a parte fiscal com o seu certificado, cadastramos os produtos e treinamos a equipe.</p></div>
+      <div class="passo"><h3>Implantação assistida</h3><p>Configuramos a parte fiscal com o seu certificado, ajudamos a cadastrar os produtos (as compras entram pelo XML da nota) e treinamos a equipe.</p></div>
     </div>
   </div>
 </section>
@@ -429,7 +426,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     <div>
       <span class="tag">Investimento</span>
       <h2>O valor depende do tamanho da sua loja</h2>
-      <p class="lead">Não cobramos por função. A proposta é feita para a sua operação: quantos caixas, quantos usuários e o volume de notas.</p>
+      <p class="lead">Não cobramos por função. A proposta é feita para a sua operação: quantos caixas e lojas você tem e como é a rotina do seu negócio.</p>
       <ul class="beneficios">
         <li><svg class="ico"><use href="#i-relogio"/></svg><span><b>Proposta em até 24 horas</b> depois da conversa.</span></li>
         <li><svg class="ico"><use href="#i-check"/></svg><span><b>Sem taxa de adesão</b> e sem fidelidade.</span></li>
@@ -468,11 +465,12 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     <div class="faq">
       <details><summary>Serve para o meu tipo de negócio?</summary><p>Atendemos padarias, mercados, lojas de varejo, restaurantes, bares, açougues e conveniências. Na conversa a gente confirma se o sistema atende a sua rotina antes de qualquer proposta.</p></details>
       <details><summary>Vocês atendem a minha cidade?</summary><p>Hoje atendemos comércios do estado de São Paulo. A implantação e o suporte são feitos pelo WhatsApp e por acesso remoto.</p></details>
+      <details><summary>Precisa de internet?</summary><p>Sim. O caixa e a emissão das notas funcionam on-line, então a loja precisa de uma conexão estável. Na demonstração conversamos sobre a sua internet.</p></details>
       <details><summary>Preciso trocar meu computador ou impressora?</summary><p>O sistema roda no navegador do computador. Na demonstração conferimos o seu leitor de código de barras, a impressora de cupom e a balança para dizer o que já serve.</p></details>
       <details><summary>Como funciona a nota fiscal?</summary><p>A NFC-e é emitida no próprio caixa e a NF-e pelo módulo fiscal, com o certificado digital da sua empresa. Ajudamos na configuração junto com o seu contador.</p></details>
       <details><summary>Preciso de cartão de crédito para testar?</summary><p>Não. O teste de 7 dias é gratuito e sem cartão. Você só contrata se gostar.</p></details>
       <details><summary>Tem fidelidade? E se eu quiser cancelar?</summary><p>Não tem fidelidade nem multa. Se cancelar, seus dados são exportados para você.</p></details>
-      <details><summary>Quem me ajuda a começar?</summary><p>A nossa equipe faz a implantação assistida: configuração fiscal, cadastro dos produtos e treinamento pelo WhatsApp.</p></details>
+      <details><summary>Quem me ajuda a começar?</summary><p>A nossa equipe faz a implantação assistida: configuração fiscal, ajuda no cadastro dos produtos e treinamento pelo WhatsApp.</p></details>
     </div>
   </div>
 </section>
@@ -499,7 +497,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
 
 <div class="barra-cel">
   <a class="btn btn-wa" href="https://wa.me/5511976695896?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener" onclick="trackWhats('barra_celular')"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
-  <a class="btn btn-sec" href="#contato">Receber proposta</a>
+  <a class="btn btn-sec" href="#formLead">Receber proposta</a>
 </div>
 
 <script>
@@ -509,7 +507,7 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
   var textos={
     padaria:['Da balança ao cupom fiscal, <em>sem fila no caixa.</em>','PDV que lê a etiqueta da balança, NFC-e na hora e estoque com alerta de validade. Feito para padarias e confeitarias de SP.'],
     mercado:['Caixa rápido e estoque <em>que se repõe certo.</em>','Leitor de código de barras, NFC-e no caixa, entrada de mercadoria pelo XML e sugestão de compra. Para mercados e conveniências de SP.'],
-    loja:['Venda, crediário e estoque <em>no mesmo sistema.</em>','NFC-e no balcão, contas a receber, permissões por vendedora e estoque atualizado a cada venda. Para lojas de SP.'],
+    loja:['Venda, contas a receber e estoque <em>no mesmo sistema.</em>','NFC-e no balcão, contas a receber, permissões por vendedora e estoque atualizado a cada venda. Para lojas de SP.'],
     restaurante:['Mesas, comandas e delivery <em>fechando no mesmo caixa.</em>','Comandas e mesas, pedidos de delivery com aviso por WhatsApp e NFC-e no fechamento. Para restaurantes e bares de SP.']
   };
   function abrir(seg,origem){
@@ -550,13 +548,13 @@ footer{border-top:1px solid var(--linha);padding:40px 0 100px;color:var(--txt3);
     fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),signal:ctrl?ctrl.signal:undefined})
       .then(function(r){clearTimeout(t);if(!r.ok)throw new Error('http '+r.status);
         sjConv('formulario');
-        aviso('Recebido, '+d.nome.split(' ')[0]+'! A Sofia, nossa assistente, já vai te chamar no WhatsApp.',true);
+        aviso('Recebido, '+d.nome.split(' ')[0]+'! A Sofia, nossa assistente, já vai chamar você no WhatsApp.',true);
         f.reset();
       })
       .catch(function(){
         clearTimeout(t);
         aviso('Não conseguimos enviar agora. Abrindo o WhatsApp com a sua mensagem pronta...',false);
-        sjConv('formulario_whats');
+        gtag('event','formulario_falhou',{event_category:'lead'});
         setTimeout(function(){location.href='https://wa.me/5511976695896?text='+encodeURIComponent(whatsTexto(d));},900);
       })
       .then(function(){btn.disabled=false;btn.style.opacity=1;});
