@@ -1,0 +1,538 @@
+<title>Jato no SJDATA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: coluna única, centrada, com uma "tela do sistema" como peça central entre o gancho e a oferta. */
+  :root {
+    --tinta: #0A0A0A;
+    --carta: #141414;
+    --carta-alta: #1C1C1C;
+    --traco: #2A2A28;
+    --texto: #FAFAF7;
+    --texto-fraco: #A3A3A0;
+    --texto-sutil: #6E6E6A;
+    --limao: #D9ED4F;
+    --verde: #15803D;
+    --fonte-display: 'Outfit', 'Trebuchet MS', sans-serif;
+    --fonte-texto: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--tinta);
+    color: var(--texto);
+    font-family: var(--fonte-texto);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .faixa { width: 100%; }
+  .dentro {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 56px;
+  }
+
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-block: 28px 0;
+  }
+  .marca b {
+    font-family: var(--fonte-display);
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.04em;
+  }
+  .marca b i { color: var(--limao); font-style: normal; }
+  .marca span { font-size: 13px; color: var(--texto-sutil); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .etiqueta {
+    display: inline-block;
+    background: var(--limao);
+    color: var(--tinta);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 999px;
+  }
+
+  h1 {
+    font-family: var(--fonte-display);
+    font-weight: 900;
+    font-size: clamp(34px, 8vw, 54px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+    margin: 20px 0 0;
+  }
+  h2 {
+    font-family: var(--fonte-display);
+    font-weight: 900;
+    font-size: clamp(24px, 5.5vw, 34px);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h3 { font-size: 17px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  p { margin: 0; }
+
+  .abre { font-size: clamp(17px, 4vw, 20px); color: var(--texto-fraco); margin-top: 18px; max-width: 58ch; }
+
+  .provas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .prova {
+    border: 1px solid var(--traco);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--texto-fraco);
+    font-variant-numeric: tabular-nums;
+  }
+  .prova b { color: var(--texto); font-weight: 600; }
+
+  /* Tela do sistema */
+  .tela {
+    margin-top: 40px;
+    border: 1px solid var(--traco);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--carta);
+  }
+  .tela-topo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--carta-alta);
+    border-bottom: 1px solid var(--traco);
+  }
+  .bolinhas { display: flex; gap: 6px; }
+  .bolinhas i { width: 10px; height: 10px; border-radius: 999px; background: #37372F; display: block; }
+  .tela-nome { font-size: 13px; color: var(--texto-sutil); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .tela-corpo { padding: 22px 18px; }
+  .os-cabeca {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--traco);
+  }
+  .os-empresa { font-family: var(--fonte-display); font-weight: 900; font-size: 19px; letter-spacing: -0.02em; }
+  .os-meta { font-size: 13px; color: var(--texto-sutil); margin-top: 3px; }
+  .os-numero { font-size: 13px; color: var(--texto-fraco); font-variant-numeric: tabular-nums; text-align: right; }
+  .os-numero b { display: block; font-size: 17px; color: var(--texto); font-weight: 600; }
+
+  .rolagem { overflow-x: auto; margin-top: 18px; }
+  table { border-collapse: collapse; width: 100%; min-width: 430px; font-size: 14px; }
+  th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--texto-sutil);
+    font-weight: 600;
+    padding: 0 10px 9px 0;
+    border-bottom: 1px solid var(--traco);
+  }
+  td { padding: 11px 10px 11px 0; border-bottom: 1px solid var(--traco); color: var(--texto-fraco); vertical-align: top; }
+  td:first-child { color: var(--texto); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .os-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-top: 16px;
+    flex-wrap: wrap;
+  }
+  .os-total span { font-size: 13px; color: var(--texto-sutil); }
+  .os-total b { font-family: var(--fonte-display); font-weight: 900; font-size: 30px; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+
+  .os-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .botao-falso {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--traco);
+    color: var(--texto-fraco);
+  }
+  .botao-falso.destaque { background: var(--limao); color: var(--tinta); border-color: var(--limao); font-weight: 600; }
+
+  .aviso {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--texto-sutil);
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+  }
+  .aviso i {
+    flex: none;
+    margin-top: 5px;
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--limao);
+  }
+
+  .claro { background: #F6F5EF; color: var(--tinta); }
+  .claro h2 { color: var(--tinta); }
+  .claro .sub { color: #52524E; margin-top: 14px; font-size: 17px; max-width: 56ch; }
+
+  .pontos { display: grid; gap: 12px; margin-top: 30px; }
+  .ponto {
+    background: #FFFFFF;
+    border: 1px solid #E2E0D6;
+    border-radius: 14px;
+    padding: 20px;
+    display: grid;
+    gap: 7px;
+  }
+  .ponto p { color: #52524E; font-size: 15px; }
+
+  .franqueza {
+    margin-top: 30px;
+    background: #FFFFFF;
+    border: 1px solid #E2E0D6;
+    border-left: 4px solid var(--tinta);
+    border-radius: 14px;
+    padding: 20px;
+    display: grid;
+    gap: 7px;
+  }
+  .franqueza p { color: #52524E; font-size: 15px; }
+
+  .fecha { text-align: left; }
+  .fecha h2 { margin-top: 18px; }
+  .fecha p { color: var(--texto-fraco); margin-top: 16px; font-size: 17px; max-width: 54ch; }
+
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; align-items: center; }
+  .zap {
+    background: var(--verde);
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .zap:focus-visible, .copiar:focus-visible { outline: 3px solid var(--limao); outline-offset: 3px; }
+  .copiar {
+    background: transparent;
+    border: 1px solid var(--traco);
+    color: var(--texto);
+    font-family: var(--fonte-texto);
+    font-size: 15px;
+    padding: 14px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .copiar:hover { border-color: var(--texto-sutil); }
+  .numero-texto { font-size: 15px; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+
+  .rodape {
+    border-top: 1px solid var(--traco);
+    font-size: 13px;
+    color: var(--texto-sutil);
+    display: grid;
+    gap: 10px;
+  }
+  .rodape .dentro { padding-block: 26px; }
+
+  /* Agenda de instalação */
+  .agenda {
+    margin-top: 32px;
+    border: 1px solid var(--traco);
+    border-radius: 16px;
+    background: var(--carta);
+    overflow: hidden;
+  }
+  .agenda-topo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: var(--carta-alta);
+    border-bottom: 1px solid var(--traco);
+  }
+  .agenda-dia { font-family: var(--fonte-display); font-weight: 900; font-size: 17px; letter-spacing: -0.02em; }
+  .agenda-fonte { font-size: 12px; color: var(--texto-sutil); }
+
+  .visita {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 14px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--traco);
+    align-items: start;
+  }
+  .visita:last-of-type { border-bottom: 0; }
+  .hora {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--texto);
+  }
+  .hora small { display: block; font-weight: 400; font-size: 12px; color: var(--texto-sutil); }
+  .visita-corpo { min-width: 0; display: grid; gap: 5px; }
+  .visita-titulo { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .visita-linha { font-size: 13px; color: var(--texto-sutil); }
+  .visita-pessoa { font-size: 13px; color: var(--texto-fraco); }
+
+  .selo {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--traco);
+    color: var(--texto-sutil);
+    margin-top: 3px;
+  }
+  .selo.andando { background: var(--limao); color: var(--tinta); border-color: var(--limao); }
+  .selo.feito { color: #7FBF95; border-color: #2F4A3A; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tela { transition: border-color .3s ease; }
+  }
+</style>
+
+<div class="faixa">
+  <div class="dentro marca" style="padding-block:28px 0">
+    <b>sjdata<i>.</i></b>
+    <span>Gestão para o seu comércio</span>
+  </div>
+</div>
+
+<div class="faixa">
+  <div class="dentro" style="padding-block:34px 56px">
+    <span class="etiqueta">Feito para a Jato</span>
+    <h1>338 avaliações. Esse volume não cabe mais em caderno.</h1>
+    <p class="abre">A Jato é das maiores da região em avaliação, e trabalha rápido: medida por WhatsApp, box instalado no mesmo dia. Volume assim precisa de estoque e financeiro no mesmo lugar. Montamos uma tela do SJDATA com a Jato no cadastro, só para vocês verem como ficaria um orçamento de box saindo do sistema.</p>
+
+    <div class="provas">
+      <div class="prova"><b>4,8</b> no Google</div>
+      <div class="prova"><b>338</b> avaliações</div>
+      <div class="prova">Santa Terezinha, <b>São Bernardo do Campo</b></div>
+    </div>
+
+    <div class="tela">
+      <div class="tela-topo">
+        <div class="bolinhas"><i></i><i></i><i></i></div>
+        <div class="tela-nome">SJDATA · Ordem de serviço · Orçamento</div>
+      </div>
+      <div class="tela-corpo">
+        <div class="os-cabeca">
+          <div>
+            <div class="os-empresa">Jato Vidraçaria</div>
+            <div class="os-meta">Av. Luiz Pequini, 1681 · Santa Terezinha · São Bernardo do Campo</div>
+          </div>
+          <div class="os-numero">
+            Orçamento
+            <b>OS-2026-0418</b>
+          </div>
+        </div>
+
+        <div class="rolagem">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col" class="num">Medida</th>
+                <th scope="col" class="num">Qtd</th>
+                <th scope="col" class="num">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Box de correr, 2 folhas<br><span style="color:var(--texto-sutil);font-size:13px">temperado incolor 8&nbsp;mm</span></td>
+                <td class="num">1,50 × 1,90 m</td>
+                <td class="num">1</td>
+                <td class="num">1.200,00</td>
+              </tr>
+              <tr>
+                <td>Perfil de alumínio, acabamento</td>
+                <td class="num">6,80 m</td>
+                <td class="num">1</td>
+                <td class="num">240,00</td>
+              </tr>
+              <tr>
+                <td>Kit de roldanas e puxador</td>
+                <td class="num">—</td>
+                <td class="num">1</td>
+                <td class="num">160,00</td>
+              </tr>
+              <tr>
+                <td>Medição e instalação</td>
+                <td class="num">—</td>
+                <td class="num">1</td>
+                <td class="num">400,00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="os-total">
+          <span>Entrada de 40% na aprovação · saldo na instalação</span>
+          <b>R$ 2.000,00</b>
+        </div>
+
+        <div class="os-acoes">
+          <div class="botao-falso destaque">Gerar PDF</div>
+          <div class="botao-falso">Enviar no WhatsApp</div>
+          <div class="botao-falso">Aprovar e baixar estoque</div>
+        </div>
+
+        <p class="aviso"><i></i> Exemplo ilustrativo montado pela SJDATA. Os itens, medidas, valores e o número da OS são fictícios e não representam preço de mercado nem trabalho da Jato.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faixa claro">
+  <div class="dentro">
+    <h2>O que muda depois que o orçamento vira registro</h2>
+    <p class="sub">Aprovou o orçamento, o resto anda sozinho. É o mesmo cadastro do começo ao fim, sem redigitar em lugar nenhum.</p>
+
+    <div class="pontos">
+      <div class="ponto">
+        <h3>A chapa sai do estoque na hora</h3>
+        <p>O que foi orçado baixa quando a venda é aprovada. No fim do mês você sabe quanto sobrou em metro quadrado, não no olho.</p>
+      </div>
+      <div class="ponto">
+        <h3>A entrada e o saldo entram no financeiro</h3>
+        <p>Os 40% da aprovação e o saldo da instalação viram contas a receber com data. Ninguém precisa lembrar de cobrar.</p>
+      </div>
+      <div class="ponto">
+        <h3>A compra do fornecedor entra pelo XML</h3>
+        <p>Chegou a nota da chapa, do perfil e da ferragem, o estoque sobe sem digitação, com o custo certo para a próxima margem.</p>
+      </div>
+      <div class="ponto">
+        <h3>A NF-e sai do mesmo lugar</h3>
+        <p>DANFE por e-mail, cancelamento e carta de correção no próprio sistema, sem abrir um emissor à parte.</p>
+      </div>
+    </div>
+
+    <div class="franqueza">
+      <h3>O que o sistema não faz</h3>
+      <p>Não emitimos NFS-e. Se vocês faturam a instalação como serviço, isso continua saindo pelo portal da prefeitura. Também não trabalhamos com contingência offline de NFC-e nem com TEF integrado. Preferimos dizer agora do que na semana da implantação.</p>
+    </div>
+  </div>
+</div>
+
+<div class="faixa">
+  <div class="dentro">
+    <span class="etiqueta">O ponto que ninguém resolve</span>
+    <h2 style="margin-top:20px">Aprovou o orçamento. E a instalação, quem está acompanhando?</h2>
+    <p class="abre">É aí que a vidraçaria perde o cliente: a medição foi num dia, a chapa chegou noutro, e quando o cliente liga perguntando da instalação ninguém no balcão sabe responder. A ordem de serviço aprovada vira compromisso no Google Agenda, com o instalador vinculado e o endereço da obra. Quem está na loja abre o celular e vê onde cada trabalho está.</p>
+
+    <div class="agenda">
+      <div class="agenda-topo">
+        <div class="agenda-dia">Quinta, 23 de outubro</div>
+        <div class="agenda-fonte">Google Agenda · Equipe de instalação</div>
+      </div>
+
+      <div class="visita">
+        <div class="hora">08:00<small>1h30</small></div>
+        <div class="visita-corpo">
+          <div class="visita-titulo">Medição — box de banheiro</div>
+          <div class="visita-linha">Rua das Figueiras, 212 · Jd. do Mar</div>
+          <div class="visita-pessoa">Instalador: Equipe 1</div>
+          <span class="selo feito">Concluída 09:20</span>
+        </div>
+      </div>
+
+      <div class="visita">
+        <div class="hora">10:30<small>2h</small></div>
+        <div class="visita-corpo">
+          <div class="visita-titulo">Instalação — OS-2026-0418</div>
+          <div class="visita-linha">Av. Kennedy, 1480 · apto 72 · Anchieta</div>
+          <div class="visita-pessoa">Instalador: Equipe 2 · saldo a receber na entrega</div>
+          <span class="selo andando">Em andamento</span>
+        </div>
+      </div>
+
+      <div class="visita">
+        <div class="hora">14:00<small>1h</small></div>
+        <div class="visita-corpo">
+          <div class="visita-titulo">Troca de vidro — porta de sala</div>
+          <div class="visita-linha">R. Marechal Deodoro, 55 · Centro</div>
+          <div class="visita-pessoa">Instalador: Equipe 1</div>
+          <span class="selo">Agendada</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="aviso"><i></i> Exemplo ilustrativo. A agenda integrada ao Google não vem pronta de prateleira: a SJDATA monta a automação junto com o sistema, ajustada ao jeito que a sua equipe trabalha, e ela entra na implantação — não é escopo cobrado à parte. Já entregamos isso para uma empresa de box aqui do ABC.</p>
+  </div>
+</div>
+
+<div class="faixa">
+  <div class="dentro fecha" style="padding-block:0 56px">
+    <span class="etiqueta">Próximo passo</span>
+    <h2>30 minutos, com um orçamento de box de verdade</h2>
+    <p>Marcamos uma demonstração online e abrimos o sistema com um trabalho que vocês estejam fazendo esta semana. É gratuito e sem compromisso — se não fizer sentido, a gente para por aí.</p>
+
+    <div class="acoes">
+      <a class="zap" href="https://wa.me/5511976695896" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <button class="copiar" id="copiar-numero" type="button">Copiar o número</button>
+      <span class="numero-texto" id="numero">(11) 97669-5896</span>
+    </div>
+  </div>
+</div>
+
+<div class="faixa rodape">
+  <div class="dentro">
+    <p><b style="color:var(--texto-fraco);font-weight:600">SJDATA Sistemas</b> · sjdata.com.br · contato@sjdata.com.br</p>
+    <p>Chegamos até vocês por uma busca pública no Google Maps — ninguém preencheu formulário nem passou o contato. As informações de nota, avaliações e endereço nesta página vieram de lá. Se preferirem não receber contato, respondam a mensagem e removemos na hora.</p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var botao = document.getElementById('copiar-numero');
+    var numero = '11976695896';
+    botao.addEventListener('click', function () {
+      var pronto = function () {
+        botao.textContent = 'Número copiado';
+        setTimeout(function () { botao.textContent = 'Copiar o número'; }, 2200);
+      };
+      try {
+        navigator.clipboard.writeText(numero).then(pronto, function () { selecionar(); });
+      } catch (e) {
+        selecionar();
+      }
+    });
+    function selecionar() {
+      var alvo = document.getElementById('numero');
+      var faixa = document.createRange();
+      faixa.selectNodeContents(alvo);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(faixa);
+      botao.textContent = 'Selecionado, copie';
+      setTimeout(function () { botao.textContent = 'Copiar o número'; }, 2600);
+    }
+  })();
+</script>
