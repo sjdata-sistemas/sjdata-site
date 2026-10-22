@@ -4,7 +4,7 @@
   {
    "parameters": {
     "httpMethod": "GET",
-    "path": "p/:slug",
+    "path": "p",
     "responseMode": "responseNode",
     "options": {}
    },
@@ -15,8 +15,7 @@
    "position": [
     -620,
     0
-   ],
-   "webhookId": "a7c31b50-0000-4000-8000-00000000p31"
+   ]
   },
   {
    "parameters": {
@@ -39,7 +38,7 @@
     },
     "sendBody": true,
     "specifyBody": "json",
-    "jsonBody": "={{ JSON.stringify({ p_slug: String($json.params.slug || '').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,64) }) }}",
+    "jsonBody": "={{ JSON.stringify({ p_slug: String(($json.query && ($json.query.e || $json.query.empresa)) || ($json.params && $json.params.slug) || '').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,64) }) }}",
     "options": {}
    },
    "id": "h1000000-0000-4000-8000-000000000002",
