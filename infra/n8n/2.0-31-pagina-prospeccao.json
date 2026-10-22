@@ -1,0 +1,150 @@
+{
+ "name": "2.0 — 31 Pagina de prospeccao",
+ "nodes": [
+  {
+   "parameters": {
+    "httpMethod": "GET",
+    "path": "p/:slug",
+    "responseMode": "responseNode",
+    "options": {}
+   },
+   "id": "h1000000-0000-4000-8000-000000000001",
+   "name": "Pagina pedida",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    -620,
+    0
+   ],
+   "webhookId": "a7c31b50-0000-4000-8000-00000000p31"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "https://dpjlvugmmyfjaoztuygy.supabase.co/rest/v1/rpc/rpc_pagina_prospeccao",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "apikey",
+       "value": "sb_publishable_WD3-jAH53--k3XytWvtrQg_GisfpM9V"
+      },
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ]
+    },
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ p_slug: String($json.params.slug || '').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,64) }) }}",
+    "options": {}
+   },
+   "id": "h1000000-0000-4000-8000-000000000002",
+   "name": "Buscar a empresa",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    -380,
+    0
+   ],
+   "alwaysOutputData": true,
+   "onError": "continueRegularOutput",
+   "credentials": {
+    "httpHeaderAuth": {
+     "id": "aHi3lWdxM5m2W4HF",
+     "name": "Supabase ERP token"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Monta a pagina de prospeccao. Renderizado aqui no n8n porque o gateway\n// do Supabase forca text/plain e nao deixa servir HTML.\nconst d = $input.first().json;\n\nif (!d || !d.empresa) {\n  return [{ json: { achou: false, html: paginaVazia() } }];\n}\n\nfunction esc(v) {\n  return String(v == null ? '' : v)\n    .split('&').join('&amp;')\n    .split('<').join('&lt;')\n    .split('>').join('&gt;')\n    .split('\"').join('&quot;');\n}\nfunction nota(n) { return n == null ? '' : String(n).replace('.', ','); }\n\nfunction paginaVazia() {\n  return '<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charset=\"utf-8\">'\n    + '<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">'\n    + '<meta name=\"robots\" content=\"noindex, nofollow\"><title>Pagina nao encontrada</title>'\n    + '<style>body{margin:0;background:#0A0A0A;color:#FAFAF7;font-family:system-ui,Arial,sans-serif;'\n    + 'display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px;text-align:center}'\n    + 'a{color:#D9ED4F}</style></head><body><div>'\n    + '<p style=\"font-size:26px;font-weight:700;margin:0 0 12px\">sjdata<span style=\"color:#D9ED4F\">.</span></p>'\n    + '<p style=\"color:#A3A3A0;margin:0 0 20px\">Esta p&aacute;gina n&atilde;o existe ou saiu do ar.</p>'\n    + '<p style=\"margin:0\"><a href=\"https://sjdata.com.br/\">Ir para o site da SJDATA</a></p>'\n    + '</div></body></html>';\n}\n\nconst CDN = 'https://cdn.jsdelivr.net/gh/sjdata-sistemas/sjdata-site@909951f6448a29fb6103b2461f053ac5624250cd/publicado/img';\nconst ZAP = '5511976695896';\nconst ZAP_HUMANO = '(11) 97669-5896';\n\nconst curto = esc(d.nome_curto || d.empresa);\nconst peca = esc(d.peca);\nconst pecaNome = peca === 'sacada' ? 'envidraçamento de sacada' : peca;\nconst slug = esc(d.slug || '');\nconst url = 'https://sjdata.com.br/p/' + slug;\n\nlet chips = '';\nif (d.nota) chips += '<div class=\"prova\"><b>' + nota(d.nota) + '</b> no Google</div>';\nif (d.avaliacoes) chips += '<div class=\"prova\"><b>' + esc(d.avaliacoes) + '</b> avaliações</div>';\nif (d.bairro || d.cidade) {\n  chips += '<div class=\"prova\">' + esc(d.bairro || '')\n    + (d.bairro && d.cidade ? ', ' : '') + '<b>' + esc(d.cidade || '') + '</b></div>';\n}\n\nconst metaOs = esc(d.endereco || '')\n  + (d.bairro ? ' · ' + esc(d.bairro) : '')\n  + (d.cidade ? ' · ' + esc(d.cidade) : '');\n\nconst html = `<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">\n<meta name=\"robots\" content=\"noindex, nofollow\">\n<meta property=\"og:site_name\" content=\"SJDATA SISTEMAS\">\n<meta property=\"og:type\" content=\"website\">\n<meta property=\"og:url\" content=\"${url}\">\n<meta property=\"og:title\" content=\"SJDATA — feito para a ${curto}\">\n<meta property=\"og:description\" content=\"Um orçamento de ${pecaNome} saindo do sistema, com o nome de vocês no cadastro. Exemplo ilustrativo.\">\n<meta property=\"og:image\" content=\"${CDN}/${esc(d.og_imagem)}\">\n<meta property=\"og:image:width\" content=\"1200\">\n<meta property=\"og:image:height\" content=\"630\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta name=\"description\" content=\"Um orçamento de ${pecaNome} saindo do sistema SJDATA, com o nome da ${curto} no cadastro.\">\n<title>${curto} no SJDATA</title>\n<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&family=Inter:wght@400;500;600;700&display=swap\">\n<style>\n:root{--tinta:#0A0A0A;--carta:#141414;--carta-alta:#1C1C1C;--traco:#2A2A28;--texto:#FAFAF7;\n--texto-fraco:#A3A3A0;--texto-sutil:#6E6E6A;--limao:#D9ED4F;--verde:#15803D;\n--display:'Outfit','Trebuchet MS',sans-serif;--corpo:'Inter',-apple-system,'Segoe UI',sans-serif;\ncolor-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}\n*{box-sizing:border-box}\nbody{margin:0;background:var(--tinta);color:var(--texto);font-family:var(--corpo);font-size:16px;\nline-height:1.55;-webkit-font-smoothing:antialiased}\nimg{max-width:100%}\n.dentro{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));\npadding-right:max(16px,env(safe-area-inset-right,0px));padding-block:56px}\n.marca{display:flex;align-items:center;gap:14px;padding-block:28px 0}\n.marca b{font-family:var(--display);font-weight:900;font-size:24px;letter-spacing:-.04em}\n.marca b i{color:var(--limao);font-style:normal}\n.marca span{font-size:13px;color:var(--texto-sutil);letter-spacing:.08em;text-transform:uppercase}\n.etiqueta{display:inline-block;background:var(--limao);color:var(--tinta);font-size:12px;font-weight:700;\nletter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border-radius:999px}\nh1{font-family:var(--display);font-weight:900;font-size:clamp(34px,8vw,54px);line-height:1.04;\nletter-spacing:-.035em;text-wrap:balance;margin:20px 0 0}\nh2{font-family:var(--display);font-weight:900;font-size:clamp(24px,5.5vw,34px);line-height:1.12;\nletter-spacing:-.025em;text-wrap:balance;margin:0}\nh3{font-size:17px;font-weight:600;margin:0;letter-spacing:-.01em}\np{margin:0}\n.abre{font-size:clamp(17px,4vw,20px);color:var(--texto-fraco);margin-top:18px;max-width:58ch}\n.provas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}\n.prova{border:1px solid var(--traco);border-radius:10px;padding:10px 14px;font-size:14px;\ncolor:var(--texto-fraco);font-variant-numeric:tabular-nums}\n.prova b{color:var(--texto);font-weight:600}\n.tela{margin-top:40px;border:1px solid var(--traco);border-radius:16px;overflow:hidden;background:var(--carta)}\n.tela-topo{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--carta-alta);\nborder-bottom:1px solid var(--traco)}\n.bolinhas{display:flex;gap:6px}\n.bolinhas i{width:10px;height:10px;border-radius:999px;background:#37372F;display:block}\n.tela-nome{font-size:13px;color:var(--texto-sutil);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n.tela-corpo{padding:22px 18px}\n.os-cabeca{display:flex;flex-wrap:wrap;gap:14px 20px;justify-content:space-between;align-items:flex-start;\npadding-bottom:18px;border-bottom:1px solid var(--traco)}\n.os-empresa{font-family:var(--display);font-weight:900;font-size:19px;letter-spacing:-.02em}\n.os-meta{font-size:13px;color:var(--texto-sutil);margin-top:3px}\n.os-numero{font-size:13px;color:var(--texto-fraco);font-variant-numeric:tabular-nums;text-align:right}\n.os-numero b{display:block;font-size:17px;color:var(--texto);font-weight:600}\n.rolagem{overflow-x:auto;margin-top:18px}\ntable{border-collapse:collapse;width:100%;min-width:430px;font-size:14px}\nth{text-align:left;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--texto-sutil);\nfont-weight:600;padding:0 10px 9px 0;border-bottom:1px solid var(--traco)}\ntd{padding:11px 10px 11px 0;border-bottom:1px solid var(--traco);color:var(--texto-fraco);vertical-align:top}\ntd:first-child{color:var(--texto)}\n.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}\n.os-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:16px;flex-wrap:wrap}\n.os-total span{font-size:13px;color:var(--texto-sutil)}\n.os-total b{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}\n.os-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}\n.botao-falso{font-size:13px;font-weight:500;padding:9px 14px;border-radius:8px;border:1px solid var(--traco);color:var(--texto-fraco)}\n.botao-falso.destaque{background:var(--limao);color:var(--tinta);border-color:var(--limao);font-weight:600}\n.aviso{margin-top:14px;font-size:13px;color:var(--texto-sutil);display:flex;gap:9px;align-items:flex-start}\n.aviso i{flex:none;margin-top:5px;width:7px;height:7px;border-radius:999px;background:var(--limao)}\n.agenda{margin-top:32px;border:1px solid var(--traco);border-radius:16px;background:var(--carta);overflow:hidden}\n.agenda-topo{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;\npadding:16px 18px;background:var(--carta-alta);border-bottom:1px solid var(--traco)}\n.agenda-dia{font-family:var(--display);font-weight:900;font-size:17px;letter-spacing:-.02em}\n.agenda-fonte{font-size:12px;color:var(--texto-sutil)}\n.visita{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 18px;border-bottom:1px solid var(--traco);align-items:start}\n.visita:last-of-type{border-bottom:0}\n.hora{font-variant-numeric:tabular-nums;font-weight:600;font-size:15px}\n.hora small{display:block;font-weight:400;font-size:12px;color:var(--texto-sutil)}\n.visita-corpo{min-width:0;display:grid;gap:5px}\n.visita-titulo{font-size:15px;font-weight:600;letter-spacing:-.01em}\n.visita-linha{font-size:13px;color:var(--texto-sutil)}\n.visita-pessoa{font-size:13px;color:var(--texto-fraco)}\n.selo{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;\npadding:4px 10px;border-radius:999px;border:1px solid var(--traco);color:var(--texto-sutil);margin-top:3px}\n.selo.andando{background:var(--limao);color:var(--tinta);border-color:var(--limao)}\n.selo.feito{color:#7FBF95;border-color:#2F4A3A}\n.claro{background:#F6F5EF;color:var(--tinta)}\n.claro h2{color:var(--tinta)}\n.claro .sub{color:#52524E;margin-top:14px;font-size:17px;max-width:56ch}\n.pontos{display:grid;gap:12px;margin-top:30px}\n.ponto{background:#FFF;border:1px solid #E2E0D6;border-radius:14px;padding:20px;display:grid;gap:7px}\n.ponto p{color:#52524E;font-size:15px}\n.franqueza{margin-top:30px;background:#FFF;border:1px solid #E2E0D6;border-left:4px solid var(--tinta);\nborder-radius:14px;padding:20px;display:grid;gap:7px}\n.franqueza p{color:#52524E;font-size:15px}\n.fecha h2{margin-top:18px}\n.fecha p{color:var(--texto-fraco);margin-top:16px;font-size:17px;max-width:54ch}\n.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}\n.zap{background:var(--verde);color:#FFF;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;\ntext-decoration:none;display:inline-block}\n.copiar{background:transparent;border:1px solid var(--traco);color:var(--texto);font-family:var(--corpo);\nfont-size:15px;padding:14px 20px;border-radius:999px;cursor:pointer}\n.numero-texto{font-size:15px;color:var(--texto-fraco);font-variant-numeric:tabular-nums}\n.rodape{border-top:1px solid var(--traco);font-size:13px;color:var(--texto-sutil);display:grid;gap:10px}\n.rodape .dentro{padding-block:26px}\n</style>\n</head>\n<body>\n\n<div class=\"dentro marca\" style=\"padding-block:28px 0\">\n<b>sjdata<i>.</i></b><span>Gest&atilde;o para o seu com&eacute;rcio</span>\n</div>\n\n<div class=\"dentro\" style=\"padding-block:34px 56px\">\n<span class=\"etiqueta\">Feito para a ${curto}</span>\n<h1>${esc(d.gancho)}</h1>\n<p class=\"abre\">${esc(d.abre)} Montamos uma tela do SJDATA com a ${curto} no cadastro, s&oacute; para voc&ecirc;s verem como ficaria um or&ccedil;amento de ${pecaNome} saindo do sistema.</p>\n<div class=\"provas\">${chips}</div>\n\n<div class=\"tela\">\n<div class=\"tela-topo\"><div class=\"bolinhas\"><i></i><i></i><i></i></div>\n<div class=\"tela-nome\">SJDATA &middot; Ordem de servi&ccedil;o &middot; Or&ccedil;amento</div></div>\n<div class=\"tela-corpo\">\n<div class=\"os-cabeca\">\n<div><div class=\"os-empresa\">${esc(d.empresa)}</div><div class=\"os-meta\">${metaOs}</div></div>\n<div class=\"os-numero\">Or&ccedil;amento<b>OS-2026-0418</b></div>\n</div>\n<div class=\"rolagem\"><table>\n<thead><tr><th scope=\"col\">Item</th><th scope=\"col\" class=\"num\">Medida</th>\n<th scope=\"col\" class=\"num\">Qtd</th><th scope=\"col\" class=\"num\">Total</th></tr></thead>\n<tbody>\n<tr><td>${esc(d.titulo_item)}<br><span style=\"color:var(--texto-sutil);font-size:13px\">${esc(d.subtitulo)}</span></td>\n<td class=\"num\">${esc(d.medida)}</td><td class=\"num\">1</td><td class=\"num\">${esc(d.valor_1)}</td></tr>\n<tr><td>${esc(d.item_2)}</td><td class=\"num\">${esc(d.medida_2)}</td><td class=\"num\">1</td><td class=\"num\">${esc(d.valor_2)}</td></tr>\n<tr><td>${esc(d.item_3)}</td><td class=\"num\">&mdash;</td><td class=\"num\">1</td><td class=\"num\">${esc(d.valor_3)}</td></tr>\n<tr><td>Medi&ccedil;&atilde;o e instala&ccedil;&atilde;o</td><td class=\"num\">&mdash;</td><td class=\"num\">1</td><td class=\"num\">${esc(d.valor_servico)}</td></tr>\n</tbody></table></div>\n<div class=\"os-total\"><span>Entrada de 40% na aprova&ccedil;&atilde;o &middot; saldo na instala&ccedil;&atilde;o</span><b>R$ ${esc(d.total)}</b></div>\n<div class=\"os-acoes\"><div class=\"botao-falso destaque\">Gerar PDF</div>\n<div class=\"botao-falso\">Enviar no WhatsApp</div><div class=\"botao-falso\">Aprovar e baixar estoque</div></div>\n<p class=\"aviso\"><i></i> Exemplo ilustrativo montado pela SJDATA. Os itens, medidas, valores e o n&uacute;mero da OS s&atilde;o fict&iacute;cios e n&atilde;o representam pre&ccedil;o de mercado nem trabalho da ${curto}.</p>\n</div></div>\n</div>\n\n<div class=\"dentro\">\n<span class=\"etiqueta\">O ponto que ningu&eacute;m resolve</span>\n<h2 style=\"margin-top:20px\">Aprovou o or&ccedil;amento. E a instala&ccedil;&atilde;o, quem est&aacute; acompanhando?</h2>\n<p class=\"abre\">&Eacute; a&iacute; que a vidra&ccedil;aria perde o cliente: a medi&ccedil;&atilde;o foi num dia, a chapa chegou noutro, e quando o cliente liga perguntando da instala&ccedil;&atilde;o ningu&eacute;m no balc&atilde;o sabe responder. A ordem de servi&ccedil;o aprovada vira compromisso no Google Agenda, com o instalador vinculado e o endere&ccedil;o da obra.</p>\n<div class=\"agenda\">\n<div class=\"agenda-topo\"><div class=\"agenda-dia\">Quinta, 23 de outubro</div>\n<div class=\"agenda-fonte\">Google Agenda &middot; Equipe de instala&ccedil;&atilde;o</div></div>\n<div class=\"visita\"><div class=\"hora\">08:00<small>1h30</small></div><div class=\"visita-corpo\">\n<div class=\"visita-titulo\">Medi&ccedil;&atilde;o &mdash; box de banheiro</div>\n<div class=\"visita-linha\">Rua das Figueiras, 212 &middot; Jd. do Mar</div>\n<div class=\"visita-pessoa\">Instalador: Equipe 1</div><span class=\"selo feito\">Conclu&iacute;da 09:20</span></div></div>\n<div class=\"visita\"><div class=\"hora\">10:30<small>2h</small></div><div class=\"visita-corpo\">\n<div class=\"visita-titulo\">Instala&ccedil;&atilde;o &mdash; OS-2026-0418</div>\n<div class=\"visita-linha\">Av. Kennedy, 1480 &middot; apto 72 &middot; Anchieta</div>\n<div class=\"visita-pessoa\">Instalador: Equipe 2 &middot; saldo a receber na entrega</div>\n<span class=\"selo andando\">Em andamento</span></div></div>\n<div class=\"visita\"><div class=\"hora\">14:00<small>1h</small></div><div class=\"visita-corpo\">\n<div class=\"visita-titulo\">Troca de vidro &mdash; porta de sala</div>\n<div class=\"visita-linha\">R. Marechal Deodoro, 55 &middot; Centro</div>\n<div class=\"visita-pessoa\">Instalador: Equipe 1</div><span class=\"selo\">Agendada</span></div></div>\n</div>\n<p class=\"aviso\"><i></i> Exemplo ilustrativo. A agenda integrada ao Google n&atilde;o vem pronta de prateleira: a SJDATA monta a automa&ccedil;&atilde;o junto com o sistema, ajustada ao jeito que a sua equipe trabalha, e ela entra na implanta&ccedil;&atilde;o &mdash; n&atilde;o &eacute; escopo cobrado &agrave; parte. J&aacute; entregamos isso para uma empresa de box aqui do ABC.</p>\n</div>\n\n<div class=\"claro\"><div class=\"dentro\">\n<h2>O que muda depois que o or&ccedil;amento vira registro</h2>\n<p class=\"sub\">Aprovou o or&ccedil;amento, o resto anda sozinho. &Eacute; o mesmo cadastro do come&ccedil;o ao fim, sem redigitar em lugar nenhum.</p>\n<div class=\"pontos\">\n<div class=\"ponto\"><h3>A chapa sai do estoque na hora</h3><p>O que foi or&ccedil;ado baixa quando a venda &eacute; aprovada. No fim do m&ecirc;s voc&ecirc; sabe quanto sobrou em metro quadrado, n&atilde;o no olho.</p></div>\n<div class=\"ponto\"><h3>A entrada e o saldo entram no financeiro</h3><p>Os 40% da aprova&ccedil;&atilde;o e o saldo da instala&ccedil;&atilde;o viram contas a receber com data. Ningu&eacute;m precisa lembrar de cobrar.</p></div>\n<div class=\"ponto\"><h3>A compra do fornecedor entra pelo XML</h3><p>Chegou a nota da chapa, do perfil e da ferragem, o estoque sobe sem digita&ccedil;&atilde;o, com o custo certo para a pr&oacute;xima margem.</p></div>\n<div class=\"ponto\"><h3>A NF-e sai do mesmo lugar</h3><p>DANFE por e-mail, cancelamento e carta de corre&ccedil;&atilde;o no pr&oacute;prio sistema, sem abrir um emissor &agrave; parte.</p></div>\n</div>\n<div class=\"franqueza\"><h3>O que o sistema n&atilde;o faz</h3>\n<p>N&atilde;o emitimos NFS-e. Se voc&ecirc;s faturam a instala&ccedil;&atilde;o como servi&ccedil;o, isso continua saindo pelo portal da prefeitura. Tamb&eacute;m n&atilde;o trabalhamos com conting&ecirc;ncia offline de NFC-e nem com TEF integrado. Preferimos dizer agora do que na semana da implanta&ccedil;&atilde;o.</p></div>\n</div></div>\n\n<div class=\"dentro fecha\">\n<span class=\"etiqueta\">Pr&oacute;ximo passo</span>\n<h2>30 minutos, com um or&ccedil;amento de ${pecaNome} de verdade</h2>\n<p>Marcamos uma demonstra&ccedil;&atilde;o online e abrimos o sistema com um trabalho que voc&ecirc;s estejam fazendo esta semana. &Eacute; gratuito e sem compromisso &mdash; se n&atilde;o fizer sentido, a gente para por a&iacute;.</p>\n<div class=\"acoes\">\n<a class=\"zap\" href=\"https://wa.me/${ZAP}\" target=\"_blank\" rel=\"noopener\">Falar no WhatsApp</a>\n<button class=\"copiar\" id=\"copiar-numero\" type=\"button\">Copiar o n&uacute;mero</button>\n<span class=\"numero-texto\" id=\"numero\">${ZAP_HUMANO}</span>\n</div></div>\n\n<div class=\"rodape\"><div class=\"dentro\">\n<p><b style=\"color:var(--texto-fraco);font-weight:600\">SJDATA Sistemas</b> &middot; sjdata.com.br &middot; contato@sjdata.com.br</p>\n<p>Chegamos at&eacute; voc&ecirc;s por uma busca p&uacute;blica no Google Maps &mdash; ningu&eacute;m preencheu formul&aacute;rio nem passou o contato. As informa&ccedil;&otilde;es de nota, avalia&ccedil;&otilde;es e endere&ccedil;o nesta p&aacute;gina vieram de l&aacute;. Se preferirem n&atilde;o receber contato, respondam a mensagem e removemos na hora.</p>\n</div></div>\n\n<script>\n(function(){var b=document.getElementById('copiar-numero'),a=document.getElementById('numero');\nfunction s(){var f=document.createRange();f.selectNodeContents(a);var g=window.getSelection();\ng.removeAllRanges();g.addRange(f);b.textContent='Selecionado, copie';\nsetTimeout(function(){b.textContent='Copiar o número';},2600);}\nb.addEventListener('click',function(){var p=function(){b.textContent='Número copiado';\nsetTimeout(function(){b.textContent='Copiar o número';},2200);};\ntry{navigator.clipboard.writeText('${ZAP.slice(2)}').then(p,s);}catch(e){s();}});})();\n</script>\n</body>\n</html>`;\n\nreturn [{ json: { achou: true, html } }];\n"
+   },
+   "id": "h1000000-0000-4000-8000-000000000003",
+   "name": "Montar pagina",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    -140,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "respondWith": "text",
+    "responseBody": "={{ $json.html }}",
+    "options": {
+     "responseCode": "={{ $json.achou ? 200 : 404 }}",
+     "responseHeaders": {
+      "entries": [
+       {
+        "name": "content-type",
+        "value": "text/html; charset=utf-8"
+       },
+       {
+        "name": "cache-control",
+        "value": "public, max-age=300"
+       },
+       {
+        "name": "x-robots-tag",
+        "value": "noindex, nofollow"
+       }
+      ]
+     }
+    }
+   },
+   "id": "h1000000-0000-4000-8000-000000000004",
+   "name": "Entregar HTML",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    100,
+    0
+   ]
+  }
+ ],
+ "settings": {
+  "executionOrder": "v1",
+  "saveDataSuccessExecution": "none",
+  "saveDataErrorExecution": "all",
+  "saveExecutionProgress": false
+ },
+ "connections": {
+  "Pagina pedida": {
+   "main": [
+    [
+     {
+      "node": "Buscar a empresa",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Buscar a empresa": {
+   "main": [
+    [
+     {
+      "node": "Montar pagina",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Montar pagina": {
+   "main": [
+    [
+     {
+      "node": "Entregar HTML",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ }
+}
